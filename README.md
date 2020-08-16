@@ -1,5 +1,9 @@
 # philiprehberger-cli-builder
 
+[![Tests](https://github.com/philiprehberger/py-cli-builder/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-cli-builder/actions/workflows/publish.yml)
+[![PyPI version](https://img.shields.io/pypi/v/philiprehberger-cli-builder.svg)](https://pypi.org/project/philiprehberger-cli-builder/)
+[![License](https://img.shields.io/github/license/philiprehberger/py-cli-builder)](LICENSE)
+
 Decorator-based CLI framework with rich output.
 
 ## Install
