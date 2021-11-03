@@ -59,6 +59,14 @@ cli.progress(items)       # Progress bar
 | `@arg(name)` | Positional argument |
 | `@option(--name, -n)` | Named option with optional short form |
 
+
+## Development
+
+```bash
+pip install -e .
+python -m pytest tests/ -v
+```
+
 ## License
 
 MIT
