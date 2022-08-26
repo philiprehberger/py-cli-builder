@@ -6,7 +6,7 @@
 
 Decorator-based CLI framework with rich output.
 
-## Install
+## Installation
 
 ```bash
 pip install philiprehberger-cli-builder
@@ -59,6 +59,14 @@ cli.progress(items)       # Progress bar
 | `@arg(name)` | Positional argument |
 | `@option(--name, -n)` | Named option with optional short form |
 
+
+## API
+
+| Function / Class | Description |
+|------------------|-------------|
+| `CLI(name, version, description)` | Decorator-based CLI framework with `command()`, `run()`, and output helpers |
+| `arg(name, help, type)` | Decorator to define a positional argument on a command |
+| `option(name, short, help, default, choices, is_flag)` | Decorator to define a named option on a command |
 
 ## Development
 
