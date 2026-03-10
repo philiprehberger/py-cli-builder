@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "philiprehberger-cli-builder"
+version = "0.1.0"
+description = "Decorator-based CLI framework with rich output"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Philip Rehberger" }]
+dependencies = ["rich>=13.0"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Typing :: Typed",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/philiprehberger_cli_builder"]
