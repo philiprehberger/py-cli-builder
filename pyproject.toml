@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-cli-builder"
-version = "0.1.2"
+version = "0.1.3"
 description = "Decorator-based CLI framework with rich output"
 readme = "README.md"
 license = "MIT"
