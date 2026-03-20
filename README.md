@@ -39,7 +39,7 @@ def status(format: str):
 cli.run()
 ```
 
-## Output Helpers
+### Output Helpers
 
 ```python
 cli.success("Done!")       # ✓ Done!
@@ -51,14 +51,13 @@ cli.table(data, headers)  # Rich table
 cli.progress(items)       # Progress bar
 ```
 
-## Decorators
+### Decorators
 
 | Decorator | Description |
 |-----------|-------------|
 | `@cli.command()` | Register a command |
 | `@arg(name)` | Positional argument |
 | `@option(--name, -n)` | Named option with optional short form |
-
 
 ## API
 
