@@ -2,8 +2,7 @@
 
 [![Tests](https://github.com/philiprehberger/py-cli-builder/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-cli-builder/actions/workflows/publish.yml)
 [![PyPI version](https://img.shields.io/pypi/v/philiprehberger-cli-builder.svg)](https://pypi.org/project/philiprehberger-cli-builder/)
-[![License](https://img.shields.io/github/license/philiprehberger/py-cli-builder)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/py-cli-builder)](https://github.com/philiprehberger/py-cli-builder/commits/main)
 
 Decorator-based CLI framework with rich output.
 
@@ -60,7 +59,6 @@ cli.progress(items)       # Progress bar
 | `@arg(name)` | Positional argument |
 | `@option(--name, -n)` | Named option with optional short form |
 
-
 ## API
 
 | Function / Class | Description |
@@ -76,6 +74,24 @@ pip install -e .
 python -m pytest tests/ -v
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/py-cli-builder)
+
+🐛 [Report issues](https://github.com/philiprehberger/py-cli-builder/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/py-cli-builder/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)
