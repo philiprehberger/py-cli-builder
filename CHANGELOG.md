@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 (2026-04-29)
+
+- Add `aliases` parameter to `@cli.command()` so commands can have shortcuts (e.g. `ls` for `list`)
+- Add `type` parameter to `@option()` for casting option values to int, float, etc.
+- Replace import-only stub with real test suite covering registration, dispatch, args, options, flags, aliases, and output helpers
+
 ## 0.1.10 (2026-03-31)
 
 - Standardize README to 3-badge format with emoji Support section

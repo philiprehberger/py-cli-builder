@@ -58,6 +58,7 @@ def option(
     name: str,
     short: str | None = None,
     help: str | None = None,
+    type: type | None = None,
     default: Any = None,
     choices: list[str] | None = None,
     is_flag: bool = False,
@@ -66,7 +67,7 @@ def option(
     def decorator(fn: Callable) -> Callable:
         opts = getattr(fn, _OPT_ATTR, [])
         opts.append(_OptionDef(
-            name=name, short=short, help=help,
+            name=name, short=short, help=help, type=type,
             default=default, choices=choices, is_flag=is_flag,
         ))
         setattr(fn, _OPT_ATTR, opts)
@@ -81,6 +82,7 @@ class _Command:
     help: str | None
     args: list[_ArgDef]
     options: list[_OptionDef]
+    aliases: list[str] = field(default_factory=list)
 
 
 class CLI:
@@ -98,8 +100,17 @@ class CLI:
         self._commands: dict[str, _Command] = {}
         self._console = _console
 
-    def command(self, name: str | None = None) -> Callable:
-        """Decorator to register a command."""
+    def command(
+        self,
+        name: str | None = None,
+        aliases: list[str] | None = None,
+    ) -> Callable:
+        """Decorator to register a command.
+
+        Args:
+            name: Command name (defaults to function name).
+            aliases: Alternative names for the command (e.g. ``["ls"]`` for ``list``).
+        """
         def decorator(fn: Callable) -> Callable:
             cmd_name = name or fn.__name__
             args = list(reversed(getattr(fn, _ARG_ATTR, [])))
@@ -110,6 +121,7 @@ class CLI:
                 help=fn.__doc__,
                 args=args,
                 options=opts,
+                aliases=list(aliases or []),
             )
             self._commands[cmd_name] = cmd
             return fn
@@ -134,7 +146,11 @@ class CLI:
         else:
             subparsers = parser.add_subparsers(dest="_command")
             for cmd in self._commands.values():
-                sub = subparsers.add_parser(cmd.name, help=cmd.help)
+                sub = subparsers.add_parser(
+                    cmd.name,
+                    aliases=cmd.aliases,
+                    help=cmd.help,
+                )
                 self._add_command_args(sub, cmd)
 
             parsed = parser.parse_args(args)
@@ -143,8 +159,16 @@ class CLI:
                 parser.print_help()
                 return
 
-            cmd = self._commands[cmd_name]
+            cmd = self._resolve_command(cmd_name)
             self._run_command(cmd, parsed)
+
+    def _resolve_command(self, name: str) -> _Command:
+        if name in self._commands:
+            return self._commands[name]
+        for cmd in self._commands.values():
+            if name in cmd.aliases:
+                return cmd
+        raise KeyError(name)
 
     def _add_command_args(self, parser: argparse.ArgumentParser, cmd: _Command) -> None:
         for a in cmd.args:

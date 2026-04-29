@@ -51,6 +51,20 @@ cli.table(data, headers)  # Rich table
 cli.progress(items)       # Progress bar
 ```
 
+## Command Aliases
+
+```python
+@cli.command(name="list", aliases=["ls", "l"])
+def list_things():
+    """List all things."""
+    ...
+
+# All three invocations call list_things:
+# myapp list
+# myapp ls
+# myapp l
+```
+
 ## Decorators
 
 | Decorator | Description |
@@ -64,8 +78,9 @@ cli.progress(items)       # Progress bar
 | Function / Class | Description |
 |------------------|-------------|
 | `CLI(name, version, description)` | Decorator-based CLI framework with `command()`, `run()`, and output helpers |
+| `cli.command(name=None, aliases=None)` | Register a command with optional name and aliases |
 | `arg(name, help, type)` | Decorator to define a positional argument on a command |
-| `option(name, short, help, default, choices, is_flag)` | Decorator to define a named option on a command |
+| `option(name, short, help, type, default, choices, is_flag)` | Decorator to define a named option on a command |
 
 ## Development
 
