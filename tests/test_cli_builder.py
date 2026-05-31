@@ -142,3 +142,40 @@ def test_output_helpers_do_not_raise() -> None:
     cli.info("info")
     cli.json({"a": 1, "b": [2, 3]})
     cli.table([{"x": 1, "y": 2}, {"x": 3, "y": 4}])
+
+
+def test_list_commands_returns_sorted_primary_names() -> None:
+    cli = CLI(name="t")
+
+    @cli.command()
+    def foo() -> None:
+        pass
+
+    @cli.command(aliases=["b"])
+    def bar() -> None:
+        pass
+
+    assert cli.list_commands() == ["bar", "foo"]
+
+
+def test_has_command_matches_primary_and_aliases() -> None:
+    cli = CLI(name="t")
+
+    @cli.command()
+    def foo() -> None:
+        pass
+
+    @cli.command(aliases=["b"])
+    def bar() -> None:
+        pass
+
+    assert cli.has_command("foo") is True
+    assert cli.has_command("bar") is True
+    assert cli.has_command("b") is True
+    assert cli.has_command("missing") is False
+
+
+def test_fresh_cli_has_no_commands() -> None:
+    cli = CLI(name="t")
+    assert cli.list_commands() == []
+    assert cli.has_command("x") is False

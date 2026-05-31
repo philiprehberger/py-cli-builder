@@ -65,6 +65,25 @@ def list_things():
 # myapp l
 ```
 
+### Introspecting registered commands
+
+```python
+cli = CLI(name="myapp")
+
+@cli.command()
+def foo():
+    ...
+
+@cli.command(aliases=["b"])
+def bar():
+    ...
+
+cli.list_commands()       # ["bar", "foo"] — sorted primary names, aliases excluded
+cli.has_command("foo")    # True
+cli.has_command("b")      # True — alias match
+cli.has_command("missing")  # False
+```
+
 ## Decorators
 
 | Decorator | Description |
@@ -79,6 +98,8 @@ def list_things():
 |------------------|-------------|
 | `CLI(name, version, description)` | Decorator-based CLI framework with `command()`, `run()`, and output helpers |
 | `cli.command(name=None, aliases=None)` | Register a command with optional name and aliases |
+| `cli.list_commands()` | Return sorted list of registered primary command names (aliases excluded) |
+| `cli.has_command(name)` | Return `True` if `name` matches a registered command or alias |
 | `arg(name, help, type)` | Decorator to define a positional argument on a command |
 | `option(name, short, help, type, default, choices, is_flag)` | Decorator to define a named option on a command |
 

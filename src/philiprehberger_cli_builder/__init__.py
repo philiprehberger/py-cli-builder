@@ -170,6 +170,19 @@ class CLI:
                 return cmd
         raise KeyError(name)
 
+    def list_commands(self) -> list[str]:
+        """Return the list of registered primary command names, sorted.
+
+        Aliases are NOT included; only the canonical name for each command.
+        """
+        return sorted(self._commands.keys())
+
+    def has_command(self, name: str) -> bool:
+        """Return True when *name* is a registered command or alias."""
+        if name in self._commands:
+            return True
+        return any(name in cmd.aliases for cmd in self._commands.values())
+
     def _add_command_args(self, parser: argparse.ArgumentParser, cmd: _Command) -> None:
         for a in cmd.args:
             kwargs: dict[str, Any] = {}

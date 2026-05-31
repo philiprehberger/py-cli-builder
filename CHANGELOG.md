@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 (2026-05-30)
+
+- Add `CLI.list_commands()` returning the registered command names
+- Add `CLI.has_command(name)` checking primary names and aliases
+
 ## 0.2.0 (2026-04-29)
 
 - Add `aliases` parameter to `@cli.command()` so commands can have shortcuts (e.g. `ls` for `list`)
@@ -31,14 +36,6 @@
 ## 0.1.1
 
 - Add Homepage, Changelog URLs to pyproject.toml
-
-## 0.1.2
-
-- Update project URLs in pyproject.toml
-
-## 0.1.1
-
-- Add project URLs to pyproject.toml
 
 ## 0.1.0 (2026-03-10)
 
